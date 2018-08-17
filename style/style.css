@@ -1,0 +1,7 @@
+/* Move the video and canvas at the bottom right*/
+#container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    transform: scale(0.66) translate(33%, 33%);
+}
