@@ -3,6 +3,7 @@ var vid_width = vid.width;
 var vid_height = vid.height;
 var overlay = document.getElementById('overlay');
 var overlayCC = overlay.getContext('2d');
+var emotionScores; // currentScores
 
 /********** check and set up video/webcam **********/
 
@@ -89,11 +90,12 @@ function drawLoop() {
     }
     var cp = ctrack.getCurrentParameters();
 
-    var er = ec.meanPredict(cp);
-    if (er) {
-        updateData(er);
-        for (var i = 0;i < er.length;i++) {
-            if (er[i].value > 0.4) {
+    emotionScores = ec.meanPredict(cp);
+    // console.log(emotionScores);
+    if (emotionScores) {
+        updateData(emotionScores);
+        for (var i = 0;i < emotionScores.length;i++) {
+            if (emotionScores[i].value > 0.4) {
                 document.getElementById('icon'+(i+1)).style.visibility = 'visible';
             } else {
                 document.getElementById('icon'+(i+1)).style.visibility = 'hidden';
